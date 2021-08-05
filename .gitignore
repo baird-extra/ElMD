@@ -1,1 +1,3 @@
 build/**
+dist/**
+ElMD.egg-info/**
