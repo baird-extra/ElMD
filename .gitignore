@@ -1,5 +1,3 @@
 build/**
 dist/**
 ElMD.egg-info/**
-ElMD/__pycache__/__init__.cpython-37.pyc
-ElMD/__pycache__/ElMD.cpython-37.pyc
