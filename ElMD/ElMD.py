@@ -32,9 +32,6 @@ import re
 import os
 import pkg_resources
 
-from site import getsitepackages
-from urllib.request import urlopen
-from os.path import exists
 from collections import Counter
 from copy import deepcopy
 
@@ -234,23 +231,8 @@ class ElMD():
         """
         Load periodic data from the python site_packages/ElMD folder
         """
-        paths = getsitepackages()
-
-        for p in paths:
-            try:
-                if "ElMD" in os.listdir(p):
-                    python_package_path = p
-            except:
-                pass
-
-        if exists('python_package_path') == False:
-            url = 'https://raw.githubusercontent.com/lrcfmd/ElMD/master/ElMD/ElementDict.json'
-            response = urlopen(url).read()
-            ElementDict = json.loads(response)
-
-        else:
-            with open(python_package_path + os.join("ElMD","ElementDict.json"), 'r') as j:
-                ElementDict = json.loads(j.read())
+        data = pkg_resources.resource_string("ElMD", "ElementDict.json")
+        ElementDict = json.loads(data)
 
         return ElementDict
 
